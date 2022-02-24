@@ -1,4 +1,5 @@
 import * as CryptoJs from "crypto-js";
+import { NumberLiteralType } from "typescript";
 
 class Block {
   static calculateBlockHash = (
@@ -48,10 +49,12 @@ const genesisBlock: Block = new Block(
   Date.now()
 );
 
-//이 부분은 블록만 받아들이게끔 설계
+// 이 부분은 블록만 받아들이게끔 설계
 // blockchain is array
 // now, genesisBlock array
+// blockchain은 Block클래스 형태의 배열!!! : 을 잘 생각해봐 친구야
 let blockchain: Block[] = [genesisBlock];
+
 
 console.log("0 index of Block Array");
 console.log(blockchain);
@@ -100,6 +103,7 @@ const getHashforBlock = (aBlock: Block): string =>
 
 // Block validation function
 const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
+  // Class 안에 validateStructure을 선언하였으므로, 호출시에도 Block.validateStructure로 불러오는게 당연하겠지?
   if (!Block.validateStructure(candidateBlock)) {
     return false;
   } else if (previousBlock.index !== candidateBlock.index - 1) {

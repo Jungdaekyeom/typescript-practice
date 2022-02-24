@@ -19,9 +19,10 @@ Block.validateStructure = (aBlock) => typeof aBlock.index === "number" &&
     typeof aBlock.index === "number";
 console.log(Block.calculateBlockHash);
 const genesisBlock = new Block(0, "hash", "previousHash", "data", Date.now());
-//이 부분은 블록만 받아들이게끔 설계
+// 이 부분은 블록만 받아들이게끔 설계
 // blockchain is array
 // now, genesisBlock array
+// blockchain은 Block클래스 형태의 배열!!! : 을 잘 생각해봐 친구야
 let blockchain = [genesisBlock];
 console.log("0 index of Block Array");
 console.log(blockchain);
@@ -45,6 +46,7 @@ const createNewBlock = (data) => {
 const getHashforBlock = (aBlock) => Block.calculateBlockHash(aBlock.index, aBlock.previousHash, aBlock.data, aBlock.timestamp);
 // Block validation function
 const isBlockValid = (candidateBlock, previousBlock) => {
+    // Class 안에 validateStructure을 선언하였으므로, 호출시에도 Block.validateStructure로 불러오는게 당연하겠지?
     if (!Block.validateStructure(candidateBlock)) {
         return false;
     }
