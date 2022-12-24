@@ -127,6 +127,5 @@ createNewBlock("222");
 createNewBlock("333");
 
 console.log(blockchain);
-console.log(blockchain);
 
 export {};
